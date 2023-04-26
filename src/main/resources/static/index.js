@@ -146,16 +146,15 @@ function formaterData(billetter) {
     $("#VisBilletter").html(billettTabell);
 }
 
-function slettEnBestilling(id) {   // Slette en bestilling
+function slettEnBestilling(id) {  // Slette en bestilling
     const url = "/slettEnBestilling?id="+id;
     $.get(url, function() {
        window.location.href = "/";
     });
 }
 
-
 function slettBilletter() {   // Tømme array
     $.get("/slettAlle", function() {
-        hentAlle();
+        window.location.href = "/";
     });
 }
