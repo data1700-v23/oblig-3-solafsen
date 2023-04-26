@@ -1,33 +1,31 @@
-
 $(function(){
 
-    // hent bestilling med bestillingsid fra url og vis den i skjemaet.
+    // hent bestilling me id fra url
 
     const id = window.location.search.substring(1);
     const url = "/hentBestilling?"+id;
-    $.get(url, function(bestilling){
-        $("#id").val(bestilling.id); // hidden i html
-        $("#inp_filmvalg").val(bestilling.film);
-        $("#inp_antall").val(bestilling.antall);
-        $("#inp_fornavn").val(bestilling.fornavn);
-        $("#inp_etternavn").val(bestilling.etternavn);
-        $("#inp_telefonnr").val(bestilling.telefonnr);
-        $("#inp_epost").val(bestilling.epost);
+    $.get(url,function(bestilling){
+        $("#id").val(bestilling.id);
+        $("#film-valg").val(bestilling.film);
+        $("#billettInput").val(bestilling.antall);
+        $("#fornavnInput").val(bestilling.fornavn);
+        $("#etternavnInput").val(bestilling.etternavn);
+        $("#telefonnrInput").val(bestilling.telefonnr);
+        $("#epostInput").val(bestilling.epost);
     });
 });
 
-function endreBestiling() {
-
+function endreBestilling() {
     const bestilling = {
         id : $("#id").val(),
-        film : $("#inp_filmvalg").val(),
-        antall : $("#inp_antall").val(),
-        fornavn : $("#inp_fornavn").val(),
-        etternavn : $("#inp_etternavn").val(),
-        telefonnr : $("#inp_telefonnr").val(),
-        epost : $("#inp_epost").val()
+        film : $("#film-valg").val(),
+        antall : $("#billettInput").val(),
+        fornavn : $("#fornavnInput").val(),
+        etternavn : $("#etternavnInput").val(),
+        telefonnr : $("#telefonnrInput").val(),
+        epost : $("#epostInput").val()
     }
-    $.post("/endreBestilling", bestilling, function(){
+    $.post("/endreBestilling",bestilling,function(){
         window.location.href = 'index.html';
     });
 }
