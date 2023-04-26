@@ -1,7 +1,6 @@
 package com.example.oblig3;
 
 public class Billett {
-
     private int id;
     private String film;
     private int antall;
@@ -22,27 +21,22 @@ public class Billett {
 
     public Billett() { }
 
-    // Get- og Set-metodene
-
+    // Get-metodene:
     public String getFilm() {return film;}
-    public void setFilm(String a) {film = a;}
-
     public int getAntall() {return antall;}
-    public void setAntall(int b) {antall = b;}
-
     public String getFornavn() {return fornavn;}
-    public void setFornavn(String c) {fornavn = c;}
-
     public String getEtternavn() {return etternavn;}
-    public void setEtternavn(String d) {etternavn = d;}
-
     public int getTelefonnr() {return telefonnr;}
-    public void setTelefonnr(int e) {telefonnr = e;}
-
     public String getEpost() {return epost;}
-    public void setEpost(String f) {epost = f;}
+    public int getId() {return id;}
 
-    public int getId() { return id;}
+    // Set-metodene:
+    public void setFilm(String a) {film = a;}
+    public void setAntall(int b) {antall = b;}
+    public void setFornavn(String c) {fornavn = c;}
+    public void setEtternavn(String d) {etternavn = d;}
+    public void setTelefonnr(int e) {telefonnr = e;}
+    public void setEpost(String f) {epost = f;}
     public void setId(int g) {id = g;}
 
 }

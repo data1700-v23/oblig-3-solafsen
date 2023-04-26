@@ -14,8 +14,8 @@ public class BillettRepository {
     private JdbcTemplate db;
 
     public void leggTilBilletter(List<Billett> billetter) {
-        for(Billett b : billetter) {
-            String sql = "INSERT INTO Billett (film, antall, fornavn, etternavn, telefonnr, epost) VALUES(?,?,?,?,?,?)";
+        for (Billett b : billetter) {
+            String sql = "INSERT INTO Billett (film,antall,fornavn,etternavn,telefonnr,epost) VALUES(?,?,?,?,?,?)";
             db.update(sql, b.getFilm(), b.getAntall(),
                     b.getFornavn(), b.getEtternavn(),
                     b.getTelefonnr(), b.getEpost());
@@ -24,8 +24,8 @@ public class BillettRepository {
 
     public List<Billett> hentAlleBilletter() {
         String sql = "SELECT * FROM Billett";
-        List<Billett> alleBilletter = db.query(sql, new BeanPropertyRowMapper(Billett.class));
-        return alleBilletter;
+        List<Billett> allebilletter = db.query(sql, new BeanPropertyRowMapper(Billett.class));
+        return allebilletter;
     }
 
     public Billett hentBestilling(int id) {
@@ -37,23 +37,22 @@ public class BillettRepository {
     }
 
     public void endreBestilling(Billett billett){
-        String sql = "UPDATE Billett SET" +
-                        "film=?, antall=?, fornavn=?," +
+        String sql = "UPDATE Billett SET " +
+                        "film=?, antall=?, fornavn=?, " +
                         "etternavn=?, telefonnr=?, epost=? where id=?";
         db.update(sql, billett.getFilm(), billett.getAntall(),
                 billett.getFornavn(), billett.getEtternavn(),
                 billett.getTelefonnr(), billett.getEpost(), billett.getId());
     }
 
-    public void slettEnBestilling(int id){
+    public void slettEnBestilling(int id) {
         System.out.println(id);
         String sql = "DELETE FROM Billett WHERE id=?";
-        db.update(sql, id);
+        db.update(sql,id);
     }
 
-    public void slettAlleBilletter(){
+    public void slettAlleBilletter() {
         String sql = "DELETE FROM Billett";
         db.update(sql);
     }
-
 }

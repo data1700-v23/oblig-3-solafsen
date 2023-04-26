@@ -14,48 +14,56 @@ public class BillettController {
     @Autowired
     private BillettRepository rep;
 
+    // Sortering av etternavn
+
     @PostMapping("/lagre")
     public void lagreBillett(Billett innBillett){
-        List<Billett> alleBilletter = hentAlle();
-        slettAlle();
-
-        List<Billett> nyBillettListe = new ArrayList<>();
+        List<Billett> alleBilletter = hentAlle(); // Hente inn alle billetter som er i serveren
+        slettAlle(); // Sletter dem
+        List<Billett> nyBillettListe = new ArrayList<>(); // Lager en ny liste som man kan sortere dem (legger tilbake i)
         boolean lagtTil = false;
-
-        if(alleBilletter.size() < 1) {
-            nyBillettListe.add(innBillett);
-            lagtTil = true;
+        if (alleBilletter.size() < 1) { // Hvis det ikke finnes noe billetter i serveren
+            nyBillettListe.add(innBillett); // Legger inn den første billetten
+            lagtTil = true; // Oppdatere variabel
         }
-
-        for(Billett b : alleBilletter) {
-            if(b.getEtternavn().compareTo(innBillett.getEtternavn()) < 0 || lagtTil) {
+        for (Billett b : alleBilletter) { // Itiere gjennom alle billetter fra serveren
+            if (b.getEtternavn().compareTo(innBillett.getEtternavn()) < 0 || lagtTil) { // Sammenligner strenger
+                // Dette er for bokstavene som kommer etter det som finnes på serveren (alfabetisk)
+                nyBillettListe.add(b); // Legger tilbake i samme rekkefølgen. Ingen forandring med den som ligger i serveren
+            } else { // For de etternavnene som har alfabeter lengre frem enn den som er på serveren
+                nyBillettListe.add(innBillett); // Sortere dem da alfabetisk. Push den som kom først inn først i stack
                 nyBillettListe.add(b);
-            } else {
-                nyBillettListe.add(innBillett);
-                nyBillettListe.add(b);
-                lagtTil = true;
+                lagtTil = true; // Oppdatere variabel
             }
         }
-
-        if(!lagtTil) {
+        if (!lagtTil) { // For bokstavene som kommer etter de som finnes på serveren (alfabetisk)
             nyBillettListe.add(innBillett);
         }
-
-        rep.leggTilBilletter(nyBillettListe);
+        rep.leggTilBilletter(nyBillettListe); // legger til den nye billettliste - ferdig sortert
     }
 
     @GetMapping("/hentAlle")
-    public List<Billett> hentAlle() { return rep.hentAlleBilletter(); }
+    public List<Billett> hentAlle(){
+        return rep.hentAlleBilletter();
+    }
 
     @GetMapping("/hentBestilling")
-    public Billett hentBestilling(int id) { return rep.hentBestilling(id); }
+    public Billett hentBestilling(int id){
+        return rep.hentBestilling(id);
+    }
 
     @PostMapping("/endreBestilling")
-    public void endreBestilling(Billett billett) { rep.endreBestilling(billett); }
+    public void endreBestilling(Billett billett){
+        rep.endreBestilling(billett);
+    }
 
     @GetMapping("/slettEnBestilling")
-    public void slettEnBestilling(int id) { rep.slettEnBestilling(id); }
+    public void slettEnKunde(int id){
+        rep.slettEnBestilling(id);
+    }
 
     @GetMapping("/slettAlle")
-    public void slettAlle() { rep.slettAlleBilletter(); }
+    public void slettAlle(){
+        rep.slettAlleBilletter();
+    }
 }

@@ -1,7 +1,6 @@
-
 CREATE TABLE Billett
 (
-    id INTEGER NOT NULL AUTO_INCREMENT,
+    id INTEGER NOT NULL AUTO_INCREMENT ,
     film VARCHAR(255) NOT NULL,
     antall INTEGER NOT NULL,
     fornavn VARCHAR(255) NOT NULL,
@@ -10,3 +9,4 @@ CREATE TABLE Billett
     epost VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
