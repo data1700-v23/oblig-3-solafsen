@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Endre bestilling </title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="endreBestilling.js"></script>
+</head>
+
+<body>
+
+  <div class="container p-3 my-3 border">
+
+    <!-- OVERSKRIFT -->
+    <h1> Endre bestilling </h1>
+    <br>
+
+    <!-- VELG HVILKEN FILM -->
+    <form>
+      <input type="hidden" id="id"/> <!-- Skjul id -->
+
+      <div class="row">
+        <div class="col">
+          <label for="film-valg">Velg film: </label>
+          <select class="form-select" id="film-valg" onchange="leggTilFilm(this.value)">
+            <option value="">Velg film her</option>
+            <option>Avatar</option>
+            <option>Avengers</option>
+            <option>Blade Runner</option>
+            <option>Die Hard</option>
+            <option>Gladiator</option>
+            <option>Parasite</option>
+            <option>Ringenes Herre: Ringens brorskap</option>
+            <option>Spider-Man 3</option>
+            <option>Star Wars</option>
+            <option>The Matrix</option>
+            <option>Titanic </option>
+          </select>
+          <span class="text-danger" id="film-feilmelding"></span>
+        </div>
+        <div class="col">
+          <!-- VELG ANTALL BILLETTER -->
+          <label for="billettInput">Antall: </label>
+          <select class="form-select" id="billettInput" onchange="leggTilBillett(this.value)">
+            <option value="">Velg antall her</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
+          <span class="text-danger" id="billett-feilmelding"></span>
+        </div>
+      </div>
+    </form>
+    <br>
+    <!-- PERSONINFORMASJON -->
+    <div class="row">
+      <form>
+        <div class="form-group">
+          <label for="fornavnInput">Fornavn</label>
+          <input class="form-control" type="text" id="fornavnInput" onchange="leggTilFornavn(this.value)">
+          <span class="text-danger" id="fornavn-feilmelding"></span>
+        </div>
+        <div class="form-group">
+          <label for="etternavnInput">Etternavn</label>
+          <input class="form-control" type="text" id="etternavnInput" onchange="leggTilEtternavn(this.value)">
+          <span class="text-danger" id="etternavn-feilmelding"></span>
+        </div>
+        <div class="form-group">
+          <label for="telefonnrInput">Telefonnr</label>
+          <input class="form-control" type="text" id="telefonnrInput" onchange="leggTilTelefonnr(this.value)">
+          <span class="text-danger" id="telefonnr-feilmelding"></span>
+        </div>
+        <div class="form-group">
+          <label for="epostInput">Epost</label>
+          <input class="form-control" type="text" id="epostInput" onchange="leggTilEpost(this.value)">
+          <span class="text-danger" id="epost-feilmelding"></span>
+        </div>
+        <!-- Endre knapp -->
+        <div>
+          <br>
+          <input type="button" value="Endre" class="btn btn-primary" onclick="endreBestilling()">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
